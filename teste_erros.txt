@@ -1,13 +1,4 @@
 /*
- * LINGUAGEM DE PROGRAMAÇÃO UNIT COM SISTEMA DE UNIDADES FÍSICAS
- * 
- * Esta linguagem foi desenvolvida para demonstrar verificação de compatibilidade
- * de unidades físicas em expressões aritméticas. O sistema inclui as unidades:
- * - meters (metros)
- * - seconds (segundos) 
- * - m_per_s (metros por segundo)
- * - square_meter (metros quadrados)
- * 
  * NOTA IMPORTANTE: A verificação de tipos/unidades está sendo realizada durante
  * a análise sintática por simplicidade de implementação. Idealmente, essa 
  * verificação deveria ser feita na análise semântica, após a construção da
