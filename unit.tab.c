@@ -86,6 +86,9 @@ typedef struct {
 Symbol symbol_table[100];
 int symbol_count = 0;
 
+// Contador de erros global
+int error_count = 0;
+
 // Funções de ajuda
 Symbol* new_symbol(const char *id, int unit);
 Symbol* symbol_exists(const char *id);
@@ -103,7 +106,7 @@ int yyerror(const char *s);
 #define UNIT_ADIMENSIONAL 5
 
 
-#line 107 "unit.tab.c"
+#line 110 "unit.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -562,11 +565,11 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    67,    67,    71,    72,    76,    77,    78,    79,    80,
-      85,    90,    96,   101,   107,   112,   118,   123,   133,   142,
-     143,   144,   145,   146,   150,   151,   152,   153,   158,   159,
-     163,   171,   172,   176,   180,   184,   188,   192,   196,   204,
-     205,   206
+       0,    70,    70,    74,    75,    79,    80,    81,    82,    83,
+      88,    93,    99,   104,   110,   115,   121,   126,   136,   145,
+     146,   147,   148,   149,   153,   154,   155,   156,   161,   162,
+     166,   174,   175,   179,   183,   187,   191,   195,   199,   207,
+     208,   209
 };
 #endif
 
@@ -1420,309 +1423,309 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: statements  */
-#line 67 "unit.y"
+#line 70 "unit.y"
                { (yyval.node) = NULL; }
-#line 1426 "unit.tab.c"
+#line 1429 "unit.tab.c"
     break;
 
   case 3: /* statements: statement  */
-#line 71 "unit.y"
+#line 74 "unit.y"
               { (yyval.node) = NULL; }
-#line 1432 "unit.tab.c"
+#line 1435 "unit.tab.c"
     break;
 
   case 4: /* statements: statements statement  */
-#line 72 "unit.y"
+#line 75 "unit.y"
                          { (yyval.node) = NULL; }
-#line 1438 "unit.tab.c"
+#line 1441 "unit.tab.c"
     break;
 
   case 5: /* statement: declaration_statement  */
-#line 76 "unit.y"
+#line 79 "unit.y"
                           { (yyval.node) = NULL; }
-#line 1444 "unit.tab.c"
+#line 1447 "unit.tab.c"
     break;
 
   case 6: /* statement: assignment_statement  */
-#line 77 "unit.y"
+#line 80 "unit.y"
                          { (yyval.node) = NULL; }
-#line 1450 "unit.tab.c"
+#line 1453 "unit.tab.c"
     break;
 
   case 7: /* statement: for_statement  */
-#line 78 "unit.y"
+#line 81 "unit.y"
                   { (yyval.node) = NULL; }
-#line 1456 "unit.tab.c"
+#line 1459 "unit.tab.c"
     break;
 
   case 8: /* statement: if_statement  */
-#line 79 "unit.y"
+#line 82 "unit.y"
                  { (yyval.node) = NULL; }
-#line 1462 "unit.tab.c"
+#line 1465 "unit.tab.c"
     break;
 
   case 9: /* statement: print_statement  */
-#line 80 "unit.y"
+#line 83 "unit.y"
                     { (yyval.node) = NULL; }
-#line 1468 "unit.tab.c"
+#line 1471 "unit.tab.c"
     break;
 
   case 10: /* declaration_statement: T_FLOAT T_ID ';'  */
-#line 85 "unit.y"
+#line 88 "unit.y"
                      {
         // ex: float vel;
         new_symbol((yyvsp[-1].string), UNIT_ADIMENSIONAL);
         (yyval.node) = NULL;
     }
-#line 1478 "unit.tab.c"
+#line 1481 "unit.tab.c"
     break;
 
   case 11: /* declaration_statement: T_FLOAT T_ID '=' expression ';'  */
-#line 90 "unit.y"
+#line 93 "unit.y"
                                     {
         // ex: float vel = 0.0;
         new_symbol((yyvsp[-3].string), UNIT_ADIMENSIONAL);
         check_unit_compatibility(UNIT_ADIMENSIONAL, (yyvsp[-1].unit), "ASSIGN");
         (yyval.node) = NULL;
     }
-#line 1489 "unit.tab.c"
+#line 1492 "unit.tab.c"
     break;
 
   case 12: /* declaration_statement: T_FLOAT ':' T_UNIT_TYPE T_ID ';'  */
-#line 96 "unit.y"
+#line 99 "unit.y"
                                      { 
         // ex: float:seconds tempo_gasto;
         new_symbol((yyvsp[-1].string), (yyvsp[-2].unit));
         (yyval.node) = NULL;
     }
-#line 1499 "unit.tab.c"
+#line 1502 "unit.tab.c"
     break;
 
   case 13: /* declaration_statement: T_FLOAT ':' T_UNIT_TYPE T_ID '=' expression ';'  */
-#line 101 "unit.y"
+#line 104 "unit.y"
                                                     {
         // ex: float:seconds tempo = distancia / velocidade;
         new_symbol((yyvsp[-3].string), (yyvsp[-4].unit));
         check_unit_compatibility((yyvsp[-4].unit), (yyvsp[-1].unit), "ASSIGN");
         (yyval.node) = NULL;
     }
-#line 1510 "unit.tab.c"
+#line 1513 "unit.tab.c"
     break;
 
   case 14: /* declaration_statement: T_INT T_ID ';'  */
-#line 107 "unit.y"
+#line 110 "unit.y"
                    {
         // ex: int i;
         new_symbol((yyvsp[-1].string), UNIT_ADIMENSIONAL);
         (yyval.node) = NULL;
     }
-#line 1520 "unit.tab.c"
+#line 1523 "unit.tab.c"
     break;
 
   case 15: /* declaration_statement: T_INT T_ID '=' expression ';'  */
-#line 112 "unit.y"
+#line 115 "unit.y"
                                   {
         // ex: int i = 0;
         new_symbol((yyvsp[-3].string), UNIT_ADIMENSIONAL);
         check_unit_compatibility(UNIT_ADIMENSIONAL, (yyvsp[-1].unit), "ASSIGN");
         (yyval.node) = NULL;
     }
-#line 1531 "unit.tab.c"
+#line 1534 "unit.tab.c"
     break;
 
   case 16: /* declaration_statement: T_INT ':' T_UNIT_TYPE T_ID ';'  */
-#line 118 "unit.y"
+#line 121 "unit.y"
                                    {
         // ex: int:meters dist;
         new_symbol((yyvsp[-1].string), (yyvsp[-2].unit));
         (yyval.node) = NULL;
     }
-#line 1541 "unit.tab.c"
+#line 1544 "unit.tab.c"
     break;
 
   case 17: /* declaration_statement: T_INT ':' T_UNIT_TYPE T_ID '=' expression ';'  */
-#line 123 "unit.y"
+#line 126 "unit.y"
                                                   {
         // ex: int:meters dist = 100;
         new_symbol((yyvsp[-3].string), (yyvsp[-4].unit));
         check_unit_compatibility((yyvsp[-4].unit), (yyvsp[-1].unit), "ASSIGN");
         (yyval.node) = NULL;
     }
-#line 1552 "unit.tab.c"
+#line 1555 "unit.tab.c"
     break;
 
   case 18: /* assignment_statement: T_ID '=' expression ';'  */
-#line 133 "unit.y"
+#line 136 "unit.y"
                             {
         int target_unit = get_symbol_unit((yyvsp[-3].string));
         check_unit_compatibility(target_unit, (yyvsp[-1].unit), "ASSIGN"); 
         (yyval.node) = NULL;
     }
-#line 1562 "unit.tab.c"
+#line 1565 "unit.tab.c"
     break;
 
   case 19: /* expression: primary  */
-#line 142 "unit.y"
+#line 145 "unit.y"
                                         { (yyval.unit) = (yyvsp[0].unit); }
-#line 1568 "unit.tab.c"
+#line 1571 "unit.tab.c"
     break;
 
   case 20: /* expression: expression '+' primary  */
-#line 143 "unit.y"
+#line 146 "unit.y"
                                      { check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "+"); (yyval.unit) = (yyvsp[-2].unit); }
-#line 1574 "unit.tab.c"
+#line 1577 "unit.tab.c"
     break;
 
   case 21: /* expression: expression '-' primary  */
-#line 144 "unit.y"
+#line 147 "unit.y"
                                     { check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "-"); (yyval.unit) = (yyvsp[-2].unit); }
-#line 1580 "unit.tab.c"
+#line 1583 "unit.tab.c"
     break;
 
   case 22: /* expression: expression '*' primary  */
-#line 145 "unit.y"
+#line 148 "unit.y"
                                      { (yyval.unit) = check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "*"); }
-#line 1586 "unit.tab.c"
+#line 1589 "unit.tab.c"
     break;
 
   case 23: /* expression: expression '/' primary  */
-#line 146 "unit.y"
+#line 149 "unit.y"
                                       { (yyval.unit) = check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "/"); }
-#line 1592 "unit.tab.c"
+#line 1595 "unit.tab.c"
     break;
 
   case 24: /* primary: T_FLOAT_LITERAL  */
-#line 150 "unit.y"
+#line 153 "unit.y"
                                         { (yyval.unit) = UNIT_ADIMENSIONAL; }
-#line 1598 "unit.tab.c"
+#line 1601 "unit.tab.c"
     break;
 
   case 25: /* primary: T_ID  */
-#line 151 "unit.y"
+#line 154 "unit.y"
                                         { (yyval.unit) = get_symbol_unit((yyvsp[0].string)); }
-#line 1604 "unit.tab.c"
+#line 1607 "unit.tab.c"
     break;
 
   case 26: /* primary: '(' expression ')'  */
-#line 152 "unit.y"
+#line 155 "unit.y"
                               { (yyval.unit) = (yyvsp[-1].unit); }
-#line 1610 "unit.tab.c"
+#line 1613 "unit.tab.c"
     break;
 
   case 27: /* primary: T_INT_LITERAL  */
-#line 153 "unit.y"
+#line 156 "unit.y"
                                         { (yyval.unit) = UNIT_ADIMENSIONAL; }
-#line 1616 "unit.tab.c"
+#line 1619 "unit.tab.c"
     break;
 
   case 28: /* for_statement: T_FOR '(' assignment_statement condition ';' for_assignment_statement ')' '{' statements '}'  */
-#line 158 "unit.y"
+#line 161 "unit.y"
                                                                                                  { (yyval.node) = NULL; }
-#line 1622 "unit.tab.c"
+#line 1625 "unit.tab.c"
     break;
 
   case 29: /* for_statement: T_FOR '(' declaration_statement condition ';' for_assignment_statement ')' '{' statements '}'  */
-#line 159 "unit.y"
+#line 162 "unit.y"
                                                                                                   { (yyval.node) = NULL; }
-#line 1628 "unit.tab.c"
+#line 1631 "unit.tab.c"
     break;
 
   case 30: /* for_assignment_statement: T_ID '=' expression  */
-#line 163 "unit.y"
+#line 166 "unit.y"
                         { 
         int target_unit = get_symbol_unit((yyvsp[-2].string));
         check_unit_compatibility(target_unit, (yyvsp[0].unit), "ASSIGN"); 
         (yyval.node) = NULL; 
     }
-#line 1638 "unit.tab.c"
+#line 1641 "unit.tab.c"
     break;
 
   case 31: /* if_statement: T_IF '(' condition ')' '{' statements '}'  */
-#line 171 "unit.y"
+#line 174 "unit.y"
                                               { (yyval.node) = NULL; }
-#line 1644 "unit.tab.c"
+#line 1647 "unit.tab.c"
     break;
 
   case 32: /* if_statement: T_IF '(' condition ')' '{' statements '}' T_ELSE '{' statements '}'  */
-#line 172 "unit.y"
+#line 175 "unit.y"
                                                                         { (yyval.node) = NULL; }
-#line 1650 "unit.tab.c"
+#line 1653 "unit.tab.c"
     break;
 
   case 33: /* condition: expression '<' expression  */
-#line 176 "unit.y"
+#line 179 "unit.y"
                               { 
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "<"); 
         (yyval.integer) = 0; // Retorno simbólico
     }
-#line 1659 "unit.tab.c"
+#line 1662 "unit.tab.c"
     break;
 
   case 34: /* condition: expression '>' expression  */
-#line 180 "unit.y"
+#line 183 "unit.y"
                               {
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), ">");
         (yyval.integer) = 0;
     }
-#line 1668 "unit.tab.c"
+#line 1671 "unit.tab.c"
     break;
 
   case 35: /* condition: expression T_LE expression  */
-#line 184 "unit.y"
+#line 187 "unit.y"
                                {
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "<=");
         (yyval.integer) = 0;
     }
-#line 1677 "unit.tab.c"
+#line 1680 "unit.tab.c"
     break;
 
   case 36: /* condition: expression T_GE expression  */
-#line 188 "unit.y"
+#line 191 "unit.y"
                                {
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "GE");
         (yyval.integer) = 0;
     }
-#line 1686 "unit.tab.c"
+#line 1689 "unit.tab.c"
     break;
 
   case 37: /* condition: expression T_EQ expression  */
-#line 192 "unit.y"
+#line 195 "unit.y"
                                {
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "EQ");
         (yyval.integer) = 0;
     }
-#line 1695 "unit.tab.c"
+#line 1698 "unit.tab.c"
     break;
 
   case 38: /* condition: expression T_NE expression  */
-#line 196 "unit.y"
+#line 199 "unit.y"
                                {
         check_unit_compatibility((yyvsp[-2].unit), (yyvsp[0].unit), "!=");
         (yyval.integer) = 0;
     }
-#line 1704 "unit.tab.c"
+#line 1707 "unit.tab.c"
     break;
 
   case 39: /* print_statement: T_PRINTF '(' T_STRING_LITERAL ')' ';'  */
-#line 204 "unit.y"
+#line 207 "unit.y"
                                           { (yyval.node) = NULL; }
-#line 1710 "unit.tab.c"
+#line 1713 "unit.tab.c"
     break;
 
   case 40: /* print_statement: T_PRINTF '(' T_ID ')' ';'  */
-#line 205 "unit.y"
+#line 208 "unit.y"
                               { (yyval.node) = NULL; }
-#line 1716 "unit.tab.c"
+#line 1719 "unit.tab.c"
     break;
 
   case 41: /* print_statement: T_PRINTF '(' T_STRING_LITERAL T_ID ')' ';'  */
-#line 206 "unit.y"
+#line 209 "unit.y"
                                                { (yyval.node) = NULL; }
-#line 1722 "unit.tab.c"
+#line 1725 "unit.tab.c"
     break;
 
 
-#line 1726 "unit.tab.c"
+#line 1729 "unit.tab.c"
 
       default: break;
     }
@@ -1946,7 +1949,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 209 "unit.y"
+#line 212 "unit.y"
 
 
 // --- Implementação Simbólica das Funções de Unidade ---
@@ -1981,7 +1984,6 @@ int get_symbol_unit(const char *name) {
     char msg[300];
     snprintf(msg, sizeof(msg), "ERRO FATAL: Variavel '%s' nao declarada.", name);
     yyerror(msg);
-    exit(1);
     return UNIT_ADIMENSIONAL;
 }
 
@@ -1995,7 +1997,6 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
             char msg[300];
             snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Nao e possivel %s unidades diferentes.", op);
             yyerror(msg);
-            exit(1);
         }
         return left_unit;
     }
@@ -2012,7 +2013,7 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
         char msg[300];
         snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Multiplicacao de unidades sem regra definida.");
         yyerror(msg);
-        exit(1);
+        return UNIT_ADIMENSIONAL;
     }
     if (strcmp(op, "/") == 0) {
         if (left_unit == UNIT_METERS && right_unit == UNIT_SECONDS) return UNIT_M_PER_S;
@@ -2030,7 +2031,7 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
         char msg[300];
         snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Divisao de unidades sem regra definida.");
         yyerror(msg);
-        exit(1);
+        return UNIT_ADIMENSIONAL;
     }
     if (strcmp(op, "ASSIGN") == 0) {
         if (left_unit != UNIT_ADIMENSIONAL && right_unit == UNIT_ADIMENSIONAL) {
@@ -2040,7 +2041,6 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
             char msg[300];
             snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Atribuicao de unidade incompativel.");
             yyerror(msg);
-            exit(1);
         }
 
         //atribuição de unidades iguais ou adimensionais, é permitida
@@ -2052,16 +2052,22 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
 
 // Função principal de bison/yacc
 int main(void) {
-    if (yyparse() == 0) {
+    int parse_result = yyparse();
+    
+    if (parse_result == 0 && error_count == 0) {
         printf("Parse concluido com sucesso.\n");
+        return 0;
     } else {
-        printf("Falha no parse.\n");
+        if (error_count > 0) {
+            printf("Total de erros encontrados: %d\n", error_count);
+        }
+        return 1;
     }
-    return 0;
 }
 
 // Tratamento de erro do Parser
 int yyerror(const char *s) {
-    printf("Erro de Parse na linha %d: %s\n", yylineno, s);
+    printf("ERRO na linha %d: %s\n", yylineno, s);
+    error_count++;
     return 0;
 }

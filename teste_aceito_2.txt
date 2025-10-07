@@ -1,0 +1,57 @@
+/*
+ * TESTE ACEITO 2 - Estruturas de Controle
+ * Testa: loops for, condicionais if/else, comparações
+ */
+
+// Declarações para o teste
+float:meters posicao = 0.0;
+float:m_per_s vel = 15.0;
+float:seconds dt = 1.0;
+int iteracoes = 0;
+float:meters limite = 500.0;
+
+// Loop FOR com declaração interna
+for (int i = 0; i < 10; i = i + 1) {
+    posicao = posicao + (vel * dt);    // Atualiza posição
+    iteracoes = iteracoes + 1;
+    printf("Iteracao: " i);
+}
+
+// Loop FOR com atribuição externa
+int j = 0;
+for (j = 0; j < 5; j = j + 2) {
+    vel = vel + 1.0;                 // Acelera
+    printf("Velocidade atual: " vel);
+}
+
+// Condicionais simples
+if (posicao > limite) {
+    printf("Limite ultrapassado");
+    vel = vel / 2.0;                 // Reduz velocidade
+}
+
+// Condicionais com else
+if (vel < 10.0) {
+    printf("Velocidade baixa");
+    vel = vel + 5.0;
+} else {
+    printf("Velocidade adequada");
+    posicao = posicao - 10.0;
+}
+
+// Todas as comparações válidas
+if (posicao >= limite) {
+    printf("Chegou ao destino");
+}
+
+if (vel <= 25.0) {
+    printf("Dentro do limite");
+}
+
+if (iteracoes == 10) {
+    printf("Teste finalizado");
+}
+
+if (posicao != 0.0) {
+    printf("Objeto em movimento");
+}

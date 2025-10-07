@@ -1,0 +1,36 @@
+/*
+ * TESTE ACEITO 1 - Declarações e Operações Básicas
+ * Testa: declarações com/sem unidades, operações aritméticas válidas
+ */
+
+// Declarações básicas sem unidade
+float valor1;
+int contador = 5;
+float resultado = 3.14;
+
+// Declarações com unidades - todas as unidades suportadas
+float:meters distancia = 100.0;
+float:seconds tempo = 10.0;
+float:m_per_s velocidade = 20.5;
+float:square_meter area;
+int:meters altura = 150;
+
+// Operações aritméticas válidas
+velocidade = distancia / tempo;     // meters / seconds = m_per_s
+distancia = velocidade * tempo;     // m_per_s * seconds = meters
+area = distancia * altura;          // meters * meters = square_meter
+valor1 = altura / distancia;        // meters / meters = adimensional
+
+// Operações com adimensionais
+distancia = distancia * 2;          // meters * adimensional = meters
+velocidade = velocidade / 2.0;      // m_per_s / adimensional = m_per_s
+contador = contador + 1;            // adimensional + adimensional
+
+// Soma e subtração de unidades iguais
+distancia = distancia + altura;     // meters + meters = meters
+tempo = tempo - 5;                  // seconds - adimensional = seconds
+
+// Saída simples
+printf("Teste basico concluido");
+printf(contador);
+printf("Velocidade calculada: " velocidade);

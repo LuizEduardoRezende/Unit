@@ -96,6 +96,9 @@ printf("Teste finalizado");
 
 // Impressão de variáveis
 printf(contador);
+
+// Impressão combinada (string + variável)
+printf("Contador: " contador);
 ```
 
 ## Regras de Conversão de Unidades
@@ -119,19 +122,27 @@ O projeto utiliza Flex (lexer) e Bison (parser):
 # Compilar o projeto
 make
 
-# Executar com arquivo de teste
-./cmp < teste_completo.txt
+# Executar com arquivos de teste aceitos
+./cmp < teste_aceito_1.txt
+./cmp < teste_aceito_2.txt
+./cmp < teste_aceito_3.txt
 
-# Testar casos de erro
-./cmp < teste_erros.txt
+# Testar casos com erros
+./cmp < teste_rejeitado_1.txt
+./cmp < teste_rejeitado_2.txt
+./cmp < teste_rejeitado_3.txt
 ```
 
 ## Arquivos do Projeto
 
 - **unit.l**: Analisador léxico (Flex)
 - **unit.y**: Analisador sintático e semântico (Bison)
-- **teste_completo.txt**: Exemplo completo com código válido
-- **teste_erros.txt**: Casos de teste para verificação de erros
+- **teste_aceito_1.txt**: Exemplo básico com declarações e operações simples
+- **teste_aceito_2.txt**: Estruturas de controle (for, if/else)
+- **teste_aceito_3.txt**: Conversões complexas e I/O
+- **teste_rejeitado_1.txt**: Casos de teste para erros de unidade
+- **teste_rejeitado_2.txt**: Erros de sintaxe
+- **teste_rejeitado_3.txt**: Erros semânticos diversos
 - **makefile**: Script de compilação
 
 ## Limitações Atuais
@@ -181,3 +192,19 @@ for (int i = 0; i < 5; i = i + 1) {
 
 printf("Simulacao finalizada");
 ```
+
+## Tratamento de Erros
+
+O compilador fornece relatórios detalhados de erros:
+
+```bash
+# Exemplo de saída com erros
+ERRO na linha 16: ERRO DE UNIDADE: Atribuicao de unidade incompativel.
+ERRO na linha 23: ERRO DE UNIDADE: Multiplicacao de unidades sem regra definida.
+Total de erros encontrados: 2
+```
+
+O sistema detecta:
+- **Erros de unidade**: Incompatibilidade entre unidades físicas
+- **Erros de sintaxe**: Problemas na estrutura do código
+- **Erros semânticos**: Variáveis não declaradas, etc.

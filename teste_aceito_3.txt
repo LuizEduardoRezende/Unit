@@ -1,0 +1,48 @@
+/*
+ * TESTE ACEITO 3 - Conversões Complexas e I/O
+ * Testa: todas as conversões de unidades, diferentes formatos de printf, expressões complexas
+ */
+
+// Declarações para física básica
+float:meters comprimento = 25.0;
+float:meters largura = 10.0;
+float:square_meter area_total;
+float:meters distancia_percorrida = 0.0;
+float:seconds tempo_total = 0.0;
+float:m_per_s velocidade_media;
+
+// Conversões de unidades - todas as regras implementadas
+area_total = comprimento * largura;              // meters * meters = square_meter
+tempo_total = comprimento / velocidade_media;    // meters / m_per_s = seconds
+
+// Correção: calcular velocidade corretamente
+float:seconds tempo_base = 2.5;
+velocidade_media = comprimento / tempo_base;     // meters / seconds = m_per_s
+
+// Cálculos mais complexos
+distancia_percorrida = velocidade_media * tempo_total;  // m_per_s * seconds = meters
+float:square_meter fator_escala = area_total / 100.0;  // square_meter / adimensional = square_meter
+
+// Expressões com parênteses
+float:meters resultado_complexo = (comprimento + largura) * 2.0;
+float:seconds tempo_calculado = (distancia_percorrida * 2.0) / velocidade_media;
+
+// Teste de todas as variações de printf
+printf("=== RELATORIO DE SIMULACAO ===");
+printf("Comprimento do terreno: " comprimento);
+printf("Largura do terreno: " largura);
+printf("Area calculada: " area_total);
+printf(velocidade_media);
+printf("Tempo total de trajeto: " tempo_total);
+
+// Mais cálculos para testar robustez
+int multiplicador = 3;
+comprimento = comprimento * multiplicador;       // meters * adimensional = meters
+area_total = comprimento * largura;             // Recalcula área
+
+// Teste de precedência e associatividade
+float:meters perimetro = comprimento + largura + comprimento + largura;
+float:m_per_s vel_final = distancia_percorrida / tempo_total / 2.0;
+
+printf("Simulacao fisica completa");
+printf("Perimetro final: " perimetro);

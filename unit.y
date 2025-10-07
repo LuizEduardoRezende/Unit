@@ -16,6 +16,9 @@ typedef struct {
 Symbol symbol_table[100];
 int symbol_count = 0;
 
+// Contador de erros global
+int error_count = 0;
+
 // Funções de ajuda
 Symbol* new_symbol(const char *id, int unit);
 Symbol* symbol_exists(const char *id);
@@ -240,7 +243,6 @@ int get_symbol_unit(const char *name) {
     char msg[300];
     snprintf(msg, sizeof(msg), "ERRO FATAL: Variavel '%s' nao declarada.", name);
     yyerror(msg);
-    exit(1);
     return UNIT_ADIMENSIONAL;
 }
 
@@ -254,7 +256,6 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
             char msg[300];
             snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Nao e possivel %s unidades diferentes.", op);
             yyerror(msg);
-            exit(1);
         }
         return left_unit;
     }
@@ -271,7 +272,7 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
         char msg[300];
         snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Multiplicacao de unidades sem regra definida.");
         yyerror(msg);
-        exit(1);
+        return UNIT_ADIMENSIONAL;
     }
     if (strcmp(op, "/") == 0) {
         if (left_unit == UNIT_METERS && right_unit == UNIT_SECONDS) return UNIT_M_PER_S;
@@ -289,7 +290,7 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
         char msg[300];
         snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Divisao de unidades sem regra definida.");
         yyerror(msg);
-        exit(1);
+        return UNIT_ADIMENSIONAL;
     }
     if (strcmp(op, "ASSIGN") == 0) {
         if (left_unit != UNIT_ADIMENSIONAL && right_unit == UNIT_ADIMENSIONAL) {
@@ -299,7 +300,6 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
             char msg[300];
             snprintf(msg, sizeof(msg), "ERRO DE UNIDADE: Atribuicao de unidade incompativel.");
             yyerror(msg);
-            exit(1);
         }
 
         //atribuição de unidades iguais ou adimensionais, é permitida
@@ -311,16 +311,22 @@ int check_unit_compatibility(int left_unit, int right_unit, const char *op) {
 
 // Função principal de bison/yacc
 int main(void) {
-    if (yyparse() == 0) {
+    int parse_result = yyparse();
+    
+    if (parse_result == 0 && error_count == 0) {
         printf("Parse concluido com sucesso.\n");
+        return 0;
     } else {
-        printf("Falha no parse.\n");
+        if (error_count > 0) {
+            printf("Total de erros encontrados: %d\n", error_count);
+        }
+        return 1;
     }
-    return 0;
 }
 
 // Tratamento de erro do Parser
 int yyerror(const char *s) {
-    printf("Erro de Parse na linha %d: %s\n", yylineno, s);
+    printf("ERRO na linha %d: %s\n", yylineno, s);
+    error_count++;
     return 0;
 }
