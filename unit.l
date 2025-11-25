@@ -1,4 +1,5 @@
 %{
+class Node;
 #include "unit.tab.h"
 #include <stdio.h>
 
@@ -8,6 +9,13 @@
 #define UNIT_M_PER_S 3
 #define UNIT_SQ_METER 4
 #define UNIT_ADIMENSIONAL 5
+
+
+#include "unit.tab.h"
+int yyerror(const char *s);
+
+char *build_file_name;
+int error_count = 0;
 
 %}
 
@@ -53,12 +61,12 @@
 "square_meter"      { yylval.unit = UNIT_SQ_METER; return T_UNIT_TYPE; }
 
 [a-zA-Z_][a-zA-Z0-9_]* { 
-    yylval.string = strdup(yytext);
+    yylval.name = strdup(yytext);
     return T_ID; 
 }
 
 [0-9]+\.[0-9]+ {
-    yylval.real = atof(yytext);
+    yylval.flt = atof(yytext);
     return T_FLOAT_LITERAL;
 }
 

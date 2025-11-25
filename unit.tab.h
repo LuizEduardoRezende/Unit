@@ -77,13 +77,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 43 "unit.y"
+#line 30 "unit.y"
 
     int integer;
-    double real;
-    char *string;
-    int unit; // Para retornar o tipo de unidade
-    void *node; // Placeholder para AST nodes (não implementado aqui)
+    float flt;
+    char *name;
+    int unit; 
+    Node *node;
 
 #line 89 "unit.tab.h"
 
