@@ -1,0 +1,24 @@
+/*
+ * TESTE REJEITADO 3 - Erros de Incompatibilidade de Unidades
+ * Este arquivo DEVE falhar na compilação
+ */
+
+// Declarações válidas
+float:meters distancia = 100.0;
+float:seconds tempo = 20.0;
+float:m_per_s velocidade = 10.0;
+float:square_meter area = 50.0;
+
+// ERRO 1: Multiplicação sem regra definida
+float:meters erro1 = tempo * distancia;        // seconds * meters (SEM REGRA)
+
+// ERRO 2: Divisão sem regra definida
+float:meters erro2 = tempo / velocidade;       // seconds / m_per_s (SEM REGRA)
+
+// ERRO 3: Atribuição em declaração com unidade incompatível
+float:meters erro3 = tempo;                    // meters = seconds (INVÁLIDO)
+
+// ERRO 4: Operação inválida em loop
+for (int i = 0; i < 5; i = i + 1) {
+    distancia = distancia + tempo;               // meters + seconds (INVÁLIDO)
+}

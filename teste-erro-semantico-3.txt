@@ -1,0 +1,16 @@
+/*
+ * TESTE REJEITADO 2 - Erros Semânticos de declaração de variáveis
+ */
+
+// Contexto válido
+float:meters distancia_valida = 50.0;
+int i = 0;
+
+// ERRO 1: Variável não declarada
+resultado_nao_declarado = 42.0;               
+
+// ERRO 2: Uso de variável antes da declaração
+valor_futuro = variavel_futura + 10;          
+float variavel_futura = 5.0;
+
+

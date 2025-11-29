@@ -1,0 +1,21 @@
+/*
+ * TESTE REJEITADO 1 - Erros de Incompatibilidade de Unidades
+ * Este arquivo DEVE falhar na compilação
+ */
+
+// Declarações válidas
+float:meters distancia = 100.0;
+float:seconds tempo = 20.0;
+float:m_per_s velocidade = 10.0;
+float:square_meter area = 50.0;
+
+// ERRO 1: Soma de unidades incompatíveis
+float:meters erro1 = distancia + tempo;           // meters + seconds (INVÁLIDO)
+
+// ERRO 2: Subtração de unidades incompatíveis  
+float:seconds erro2 = tempo - distancia;       // seconds - meters (INVÁLIDO)
+
+// ERRO 3: Atribuição de unidades incompatíveis
+distancia = tempo;                             // meters = seconds (INVÁLIDO)
+
+

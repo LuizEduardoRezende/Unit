@@ -540,11 +540,11 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    40,    40,    49,    50,    52,    53,    54,    55,    56,
-      62,    68,    74,    80,    86,    92,    98,   104,   112,   119,
-     120,   121,   122,   123,   127,   128,   129,   130,   135,   136,
-     140,   146,   147,   150,   154,   158,   162,   166,   170,   177,
-     178,   179
+       0,    41,    41,    50,    51,    53,    54,    55,    56,    57,
+      63,    69,    75,    81,    87,    93,    99,   105,   113,   120,
+     121,   122,   123,   124,   128,   129,   130,   131,   136,   139,
+     144,   147,   150,   155,   159,   163,   167,   171,   175,   182,
+     183,   184
 };
 #endif
 
@@ -1450,7 +1450,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: statements  */
-#line 40 "unit.y"
+#line 41 "unit.y"
                     {    
     Program pg((yyvsp[0].node));
     pg.printAst();
@@ -1463,49 +1463,49 @@ yyreduce:
     break;
 
   case 3: /* statements: statements statement  */
-#line 49 "unit.y"
+#line 50 "unit.y"
                                             { (yyvsp[-1].node)->append((yyvsp[0].node)); (yyval.node) = (yyvsp[-1].node); }
 #line 1469 "unit.tab.c"
     break;
 
   case 4: /* statements: statement  */
-#line 50 "unit.y"
+#line 51 "unit.y"
                                             { (yyval.node) = new Stmts((yyvsp[0].node));}
 #line 1475 "unit.tab.c"
     break;
 
   case 5: /* statement: declaration_statement  */
-#line 52 "unit.y"
+#line 53 "unit.y"
                                  { (yyval.node) = (yyvsp[0].node); }
 #line 1481 "unit.tab.c"
     break;
 
   case 6: /* statement: assignment_statement  */
-#line 53 "unit.y"
+#line 54 "unit.y"
                                 { (yyval.node) = (yyvsp[0].node); }
 #line 1487 "unit.tab.c"
     break;
 
   case 7: /* statement: for_statement  */
-#line 54 "unit.y"
-                         { }
+#line 55 "unit.y"
+                         { (yyval.node) = (yyvsp[0].node); }
 #line 1493 "unit.tab.c"
     break;
 
   case 8: /* statement: if_statement  */
-#line 55 "unit.y"
-                        { }
+#line 56 "unit.y"
+                        { (yyval.node) = (yyvsp[0].node); }
 #line 1499 "unit.tab.c"
     break;
 
   case 9: /* statement: print_statement  */
-#line 56 "unit.y"
-                           { }
+#line 57 "unit.y"
+                           { (yyval.node) = (yyvsp[0].node); }
 #line 1505 "unit.tab.c"
     break;
 
   case 10: /* declaration_statement: T_FLOAT T_ID ';'  */
-#line 62 "unit.y"
+#line 63 "unit.y"
                            {
         (yyval.node) = new VarDcl((yyvsp[-1].name), UNIT_ADIMENSIONAL, "float");
     }
@@ -1513,15 +1513,15 @@ yyreduce:
     break;
 
   case 11: /* declaration_statement: T_FLOAT T_ID '=' expression ';'  */
-#line 68 "unit.y"
-                                          {
+#line 69 "unit.y"
+                                               {
         (yyval.node) = new VarDcl((yyvsp[-3].name), UNIT_ADIMENSIONAL, "float", (yyvsp[-1].node));
     }
 #line 1521 "unit.tab.c"
     break;
 
   case 12: /* declaration_statement: T_FLOAT ':' T_UNIT_TYPE T_ID ';'  */
-#line 74 "unit.y"
+#line 75 "unit.y"
                                                  { 
         (yyval.node) = new VarDcl((yyvsp[-1].name), (yyvsp[-2].unit), "float");
     }
@@ -1529,15 +1529,15 @@ yyreduce:
     break;
 
   case 13: /* declaration_statement: T_FLOAT ':' T_UNIT_TYPE T_ID '=' expression ';'  */
-#line 80 "unit.y"
-                                                                {
+#line 81 "unit.y"
+                                                                     {
         (yyval.node) = new VarDcl((yyvsp[-3].name), (yyvsp[-4].unit), "float", (yyvsp[-1].node));
     }
 #line 1537 "unit.tab.c"
     break;
 
   case 14: /* declaration_statement: T_INT T_ID ';'  */
-#line 86 "unit.y"
+#line 87 "unit.y"
                          {
         (yyval.node) = new VarDcl((yyvsp[-1].name), UNIT_ADIMENSIONAL, "int");
     }
@@ -1545,15 +1545,15 @@ yyreduce:
     break;
 
   case 15: /* declaration_statement: T_INT T_ID '=' expression ';'  */
-#line 92 "unit.y"
-                                        {
+#line 93 "unit.y"
+                                             {
         (yyval.node) = new VarDcl((yyvsp[-3].name), UNIT_ADIMENSIONAL, "int", (yyvsp[-1].node));
     }
 #line 1553 "unit.tab.c"
     break;
 
   case 16: /* declaration_statement: T_INT ':' T_UNIT_TYPE T_ID ';'  */
-#line 98 "unit.y"
+#line 99 "unit.y"
                                                {
         (yyval.node) = new VarDcl((yyvsp[-1].name), (yyvsp[-2].unit), "int");
     }
@@ -1561,175 +1561,181 @@ yyreduce:
     break;
 
   case 17: /* declaration_statement: T_INT ':' T_UNIT_TYPE T_ID '=' expression ';'  */
-#line 104 "unit.y"
-                                                              {
+#line 105 "unit.y"
+                                                                   {
         (yyval.node) = new VarDcl((yyvsp[-3].name), (yyvsp[-4].unit), "int", (yyvsp[-1].node));
     }
 #line 1569 "unit.tab.c"
     break;
 
   case 18: /* assignment_statement: T_ID '=' expression ';'  */
-#line 112 "unit.y"
+#line 113 "unit.y"
                             {
-
+        (yyval.node) = new Store((yyvsp[-3].name), (yyvsp[-1].node));
     }
 #line 1577 "unit.tab.c"
     break;
 
   case 19: /* expression: primary  */
-#line 119 "unit.y"
+#line 120 "unit.y"
                                         { (yyval.node) = (yyvsp[0].node); }
 #line 1583 "unit.tab.c"
     break;
 
   case 20: /* expression: expression '+' primary  */
-#line 120 "unit.y"
-                                        { }
+#line 121 "unit.y"
+                                        { (yyval.node) = new BinaryOp((yyvsp[-2].node), '+', (yyvsp[0].node)); }
 #line 1589 "unit.tab.c"
     break;
 
   case 21: /* expression: expression '-' primary  */
-#line 121 "unit.y"
-                                        { }
+#line 122 "unit.y"
+                                        { (yyval.node) = new BinaryOp((yyvsp[-2].node), '-', (yyvsp[0].node)); }
 #line 1595 "unit.tab.c"
     break;
 
   case 22: /* expression: expression '*' primary  */
-#line 122 "unit.y"
-                                        { }
+#line 123 "unit.y"
+                                        { (yyval.node) = new BinaryOp((yyvsp[-2].node), '*', (yyvsp[0].node)); }
 #line 1601 "unit.tab.c"
     break;
 
   case 23: /* expression: expression '/' primary  */
-#line 123 "unit.y"
-                                        { }
+#line 124 "unit.y"
+                                        { (yyval.node) = new BinaryOp((yyvsp[-2].node), '/', (yyvsp[0].node)); }
 #line 1607 "unit.tab.c"
     break;
 
   case 24: /* primary: T_FLOAT_LITERAL  */
-#line 127 "unit.y"
-                                        { }
+#line 128 "unit.y"
+                                        { (yyval.node) = new ConstDouble((yyvsp[0].flt)); }
 #line 1613 "unit.tab.c"
     break;
 
   case 25: /* primary: T_ID  */
-#line 128 "unit.y"
-                                        { }
+#line 129 "unit.y"
+                                        { (yyval.node) = new Load((yyvsp[0].name)); }
 #line 1619 "unit.tab.c"
     break;
 
   case 26: /* primary: '(' expression ')'  */
-#line 129 "unit.y"
-                                        { }
+#line 130 "unit.y"
+                                        { (yyval.node) = (yyvsp[-1].node); }
 #line 1625 "unit.tab.c"
     break;
 
   case 27: /* primary: T_INT_LITERAL  */
-#line 130 "unit.y"
-                                        { }
+#line 131 "unit.y"
+                                        { (yyval.node) = new ConstInteger((yyvsp[0].integer)); }
 #line 1631 "unit.tab.c"
     break;
 
   case 28: /* for_statement: T_FOR '(' assignment_statement condition ';' for_assignment_statement ')' '{' statements '}'  */
-#line 135 "unit.y"
-                                                                                                 { (yyval.node) = NULL; }
-#line 1637 "unit.tab.c"
+#line 136 "unit.y"
+                                                                                                        { 
+        (yyval.node) = new For((yyvsp[-7].node), (yyvsp[-6].node), (yyvsp[-4].node), (yyvsp[-1].node)); 
+    }
+#line 1639 "unit.tab.c"
     break;
 
   case 29: /* for_statement: T_FOR '(' declaration_statement condition ';' for_assignment_statement ')' '{' statements '}'  */
-#line 136 "unit.y"
-                                                                                                  { (yyval.node) = NULL; }
-#line 1643 "unit.tab.c"
+#line 139 "unit.y"
+                                                                                                         { 
+        (yyval.node) = new For((yyvsp[-7].node), (yyvsp[-6].node), (yyvsp[-4].node), (yyvsp[-1].node)); 
+    }
+#line 1647 "unit.tab.c"
     break;
 
   case 30: /* for_assignment_statement: T_ID '=' expression  */
-#line 140 "unit.y"
-                        { 
-
-    }
-#line 1651 "unit.tab.c"
+#line 144 "unit.y"
+                                              { (yyval.node) = new Store((yyvsp[-2].name), (yyvsp[0].node)); }
+#line 1653 "unit.tab.c"
     break;
 
   case 31: /* if_statement: T_IF '(' condition ')' '{' statements '}'  */
-#line 146 "unit.y"
-                                              { (yyval.node) = NULL; }
-#line 1657 "unit.tab.c"
+#line 147 "unit.y"
+                                                     { 
+        (yyval.node) = new If((yyvsp[-4].node), (yyvsp[-1].node)); 
+    }
+#line 1661 "unit.tab.c"
     break;
 
   case 32: /* if_statement: T_IF '(' condition ')' '{' statements '}' T_ELSE '{' statements '}'  */
-#line 147 "unit.y"
-                                                                        { (yyval.node) = NULL; }
-#line 1663 "unit.tab.c"
+#line 150 "unit.y"
+                                                                                        { 
+        (yyval.node) = new If((yyvsp[-8].node), (yyvsp[-5].node), (yyvsp[-1].node)); 
+    }
+#line 1669 "unit.tab.c"
     break;
 
   case 33: /* condition: expression '<' expression  */
-#line 150 "unit.y"
+#line 155 "unit.y"
                                      { 
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), "<", (yyvsp[0].node));
     }
-#line 1671 "unit.tab.c"
+#line 1677 "unit.tab.c"
     break;
 
   case 34: /* condition: expression '>' expression  */
-#line 154 "unit.y"
+#line 159 "unit.y"
                                      {
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), ">", (yyvsp[0].node));
     }
-#line 1679 "unit.tab.c"
+#line 1685 "unit.tab.c"
     break;
 
   case 35: /* condition: expression T_LE expression  */
-#line 158 "unit.y"
+#line 163 "unit.y"
                                       {
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), "<=", (yyvsp[0].node));
     }
-#line 1687 "unit.tab.c"
+#line 1693 "unit.tab.c"
     break;
 
   case 36: /* condition: expression T_GE expression  */
-#line 162 "unit.y"
+#line 167 "unit.y"
                                       {
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), ">=", (yyvsp[0].node));
     }
-#line 1695 "unit.tab.c"
+#line 1701 "unit.tab.c"
     break;
 
   case 37: /* condition: expression T_EQ expression  */
-#line 166 "unit.y"
+#line 171 "unit.y"
                                       {
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), "==", (yyvsp[0].node));
     }
-#line 1703 "unit.tab.c"
+#line 1709 "unit.tab.c"
     break;
 
   case 38: /* condition: expression T_NE expression  */
-#line 170 "unit.y"
+#line 175 "unit.y"
                                       {
-
+        (yyval.node) = new CompOp((yyvsp[-2].node), "!=", (yyvsp[0].node));
     }
-#line 1711 "unit.tab.c"
-    break;
-
-  case 39: /* print_statement: T_PRINTF '(' T_STRING_LITERAL ')' ';'  */
-#line 177 "unit.y"
-                                                 { (yyval.node) = NULL; }
 #line 1717 "unit.tab.c"
     break;
 
-  case 40: /* print_statement: T_PRINTF '(' T_ID ')' ';'  */
-#line 178 "unit.y"
-                                                 { (yyval.node) = NULL; }
+  case 39: /* print_statement: T_PRINTF '(' T_STRING_LITERAL ')' ';'  */
+#line 182 "unit.y"
+                                                 { (yyval.node) = new Print(new ConstString((yyvsp[-2].name))); }
 #line 1723 "unit.tab.c"
     break;
 
-  case 41: /* print_statement: T_PRINTF '(' T_STRING_LITERAL T_ID ')' ';'  */
-#line 179 "unit.y"
-                                                 { (yyval.node) = NULL; }
+  case 40: /* print_statement: T_PRINTF '(' T_ID ')' ';'  */
+#line 183 "unit.y"
+                                                 { (yyval.node) = new Print(new Load((yyvsp[-2].name))); }
 #line 1729 "unit.tab.c"
     break;
 
+  case 41: /* print_statement: T_PRINTF '(' T_STRING_LITERAL T_ID ')' ';'  */
+#line 184 "unit.y"
+                                                 { (yyval.node) = new Print(new Load((yyvsp[-2].name))); }
+#line 1735 "unit.tab.c"
+    break;
 
-#line 1733 "unit.tab.c"
+
+#line 1739 "unit.tab.c"
 
       default: break;
     }
@@ -1953,27 +1959,5 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 182 "unit.y"
+#line 187 "unit.y"
 
-
-// Função principal de bison/yacc
-int main(void) {
-    int parse_result = yyparse();
-    
-    if (parse_result == 0 && error_count == 0) {
-        printf("Parse concluido com sucesso.\n");
-        return 0;
-    } else {
-        if (error_count > 0) {
-            printf("Total de erros encontrados: %d\n", error_count);
-        }
-        return 1;
-    }
-}
-
-// Tratamento de erro do Parser
-int yyerror(const char *s) {
-    printf("ERRO na linha %d: %s\n", yylineno, s);
-    error_count++;
-    return 0;
-}

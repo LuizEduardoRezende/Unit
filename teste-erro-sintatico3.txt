@@ -1,0 +1,9 @@
+// Declarações válidas
+float:meters distancia = 100.0;
+float:seconds tempo = 20.0;
+float:m_per_s velocidade = 10.0;
+
+// If inválido, parênteses são necessários
+if tempo == 10 {
+    printf("Teste finalizado");
+}

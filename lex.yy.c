@@ -530,17 +530,10 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "unit.l"
 #line 2 "unit.l"
-class Node;
-#include "unit.tab.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-// Definição das unidades para simplificar o código
-#define UNIT_METERS 1
-#define UNIT_SECONDS 2
-#define UNIT_M_PER_S 3
-#define UNIT_SQ_METER 4
-#define UNIT_ADIMENSIONAL 5
-
+class Node;
 
 #include "unit.tab.h"
 int yyerror(const char *s);
@@ -548,8 +541,14 @@ int yyerror(const char *s);
 char *build_file_name;
 int error_count = 0;
 
+// Definição das unidades para simplificar o código
+#define UNIT_METERS 1
+#define UNIT_SECONDS 2
+#define UNIT_M_PER_S 3
+#define UNIT_SQ_METER 4
+#define UNIT_ADIMENSIONAL 5
+#line 551 "lex.yy.c"
 #line 552 "lex.yy.c"
-#line 553 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -766,10 +765,10 @@ YY_DECL
 		}
 
 	{
-#line 24 "unit.l"
+#line 23 "unit.l"
 
 
-#line 773 "lex.yy.c"
+#line 772 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -839,164 +838,164 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 26 "unit.l"
+#line 25 "unit.l"
 /* Ignora espaços e quebras de linha */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 28 "unit.l"
+#line 27 "unit.l"
 /* Comentário de linha - ignora até o final da linha */
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */
 YY_RULE_SETUP
-#line 29 "unit.l"
+#line 28 "unit.l"
 /* Comentário de bloco */
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 31 "unit.l"
+#line 30 "unit.l"
 { return T_FLOAT; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 32 "unit.l"
+#line 31 "unit.l"
 { return T_INT; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 33 "unit.l"
+#line 32 "unit.l"
 { return T_FOR; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 34 "unit.l"
+#line 33 "unit.l"
 { return T_IF; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 35 "unit.l"
+#line 34 "unit.l"
 { return T_ELSE; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 36 "unit.l"
+#line 35 "unit.l"
 { return T_PRINTF; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 38 "unit.l"
+#line 37 "unit.l"
 { return '='; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 39 "unit.l"
+#line 38 "unit.l"
 { return T_NE; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 40 "unit.l"
+#line 39 "unit.l"
 { return '<'; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 41 "unit.l"
+#line 40 "unit.l"
 { return '>'; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 42 "unit.l"
+#line 41 "unit.l"
 { return T_LE; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 43 "unit.l"
+#line 42 "unit.l"
 { return T_GE; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 44 "unit.l"
+#line 43 "unit.l"
 { return T_EQ; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 45 "unit.l"
+#line 44 "unit.l"
 { return '('; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 46 "unit.l"
+#line 45 "unit.l"
 { return ')'; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 47 "unit.l"
+#line 46 "unit.l"
 { return '{'; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 48 "unit.l"
+#line 47 "unit.l"
 { return '}'; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 49 "unit.l"
+#line 48 "unit.l"
 { return ';'; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 50 "unit.l"
+#line 49 "unit.l"
 { return '+'; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 51 "unit.l"
+#line 50 "unit.l"
 { return '-'; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 52 "unit.l"
+#line 51 "unit.l"
 { return '*'; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 53 "unit.l"
+#line 52 "unit.l"
 { return '/'; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 54 "unit.l"
+#line 53 "unit.l"
 { return ':'; }
 	YY_BREAK
 case 27:
 /* rule 27 can match eol */
 YY_RULE_SETUP
-#line 56 "unit.l"
-{ return T_STRING_LITERAL; }
+#line 55 "unit.l"
+{ yylval.name = strdup(yytext); return T_STRING_LITERAL; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 58 "unit.l"
+#line 57 "unit.l"
 { yylval.unit = UNIT_METERS; return T_UNIT_TYPE; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 59 "unit.l"
+#line 58 "unit.l"
 { yylval.unit = UNIT_SECONDS; return T_UNIT_TYPE; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 60 "unit.l"
+#line 59 "unit.l"
 { yylval.unit = UNIT_M_PER_S; return T_UNIT_TYPE; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 61 "unit.l"
+#line 60 "unit.l"
 { yylval.unit = UNIT_SQ_METER; return T_UNIT_TYPE; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 63 "unit.l"
+#line 62 "unit.l"
 { 
     yylval.name = strdup(yytext);
     return T_ID; 
@@ -1004,7 +1003,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 68 "unit.l"
+#line 67 "unit.l"
 {
     yylval.flt = atof(yytext);
     return T_FLOAT_LITERAL;
@@ -1012,7 +1011,7 @@ YY_RULE_SETUP
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 73 "unit.l"
+#line 72 "unit.l"
 {
     yylval.integer = atoi(yytext);
     return T_INT_LITERAL;
@@ -1020,15 +1019,15 @@ YY_RULE_SETUP
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 79 "unit.l"
+#line 78 "unit.l"
 { printf("Erro Léxico: Caractere inesperado '%s'\n", yytext); }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 81 "unit.l"
+#line 80 "unit.l"
 ECHO;
 	YY_BREAK
-#line 1032 "lex.yy.c"
+#line 1031 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2045,8 +2044,40 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 81 "unit.l"
+#line 80 "unit.l"
 
 
+int yyerror(const char *s) {
+    fprintf(stderr, "%d:%d: %s\n", 
+        yylineno, 0, s);
+    error_count++;
+    return 1;
+}
 
-int yywrap(void) { return 1; }
+int yywrap() {
+    return 1;
+}
+
+int main(int argc, char *argv[]) {
+    
+    if (argc <= 1) {
+        fprintf(stderr, "Sintaxe: %s nome_do_programa\n",
+            argv[0]);
+        return 1;
+    }
+
+    build_file_name = argv[1];
+    yyin = fopen(build_file_name, "r");
+    if (yyin == NULL) {
+        fprintf(stderr, "Não foi possível abrir o arquivo %s.\n", build_file_name);
+        return 1;
+    }
+
+    //yydebug = 1;
+    yyparse();
+
+    if (yyin)
+        fclose(yyin);
+    
+    return error_count;
+}

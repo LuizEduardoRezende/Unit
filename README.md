@@ -108,6 +108,7 @@ O sistema implementa as seguintes regras de conversão:
 | Operação | Resultado | Exemplo |
 |----------|-----------|---------|
 | meters ÷ seconds | m_per_s | distancia / tempo |
+| meters ÷ m_per_s | seconds | distancia / velocidade |
 | m_per_s × seconds | meters | velocidade * tempo |
 | meters × meters | square_meter | comprimento * largura |
 | meters ÷ meters | adimensional | altura / distancia |
@@ -123,26 +124,26 @@ O projeto utiliza Flex (lexer) e Bison (parser):
 make
 
 # Executar com arquivos de teste aceitos
-./cmp < teste_aceito_1.txt
-./cmp < teste_aceito_2.txt
-./cmp < teste_aceito_3.txt
+./cmp teste-aceito-1.txt
+./cmp teste-aceito-2.txt
+./cmp teste-aceito-3.txt
 
 # Testar casos com erros
-./cmp < teste_rejeitado_1.txt
-./cmp < teste_rejeitado_2.txt
-./cmp < teste_rejeitado_3.txt
+./cmp teste-erro-semantico-1.txt
+./cmp teste-erro-semantico-2.txt
+./cmp teste-erro-semantico-3.txt
 ```
 
 ## Arquivos do Projeto
 
 - **unit.l**: Analisador léxico (Flex)
 - **unit.y**: Analisador sintático e semântico (Bison)
-- **teste_aceito_1.txt**: Exemplo básico com declarações e operações simples
-- **teste_aceito_2.txt**: Estruturas de controle (for, if/else)
-- **teste_aceito_3.txt**: Conversões complexas e I/O
-- **teste_rejeitado_1.txt**: Casos de teste para erros de unidade
-- **teste_rejeitado_2.txt**: Erros de sintaxe
-- **teste_rejeitado_3.txt**: Erros semânticos diversos
+- **nodes.h**: Definição das classes da AST e Análise Semântica
+- **teste-aceito-1.txt**: Exemplo básico com declarações e operações simples
+- **teste-aceito-2.txt**: Estruturas de controle (for, if/else)
+- **teste-aceito-3.txt**: Conversões complexas e I/O
+- **teste-erro-semantico-*.txt**: Testes de erros semânticos
+- **teste-erro-sintatico-*.txt**: Testes de erros sintáticos
 - **makefile**: Script de compilação
 
 ## Limitações Atuais
